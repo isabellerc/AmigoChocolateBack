@@ -1,33 +1,31 @@
 ﻿using AmigoChocolateBack.Dados.Configuration;
-//using AmigoChocolateBack.Data.Configurations;
 using AmigoChocolateBack.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Reflection.Emit;
-using System.Text.RegularExpressions;
-using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace AmigoChocolateBack.Dados
 {
-   
-
-   
-        public class AmigoChocolateBackContext : DbContext
+    public class AmigoChocolateBackContext : DbContext
+    {
+        public AmigoChocolateBackContext(DbContextOptions<AmigoChocolateBackContext> options) : base(options)
         {
-           
-            public Microsoft.EntityFrameworkCore.DbSet<Grupo> Grupos { get; set; }
-            
-            public AmigoChocolateBackContext(DbContextOptions<AmigoChocolateBackContext> options) : base(options)
-            {
-            }
-
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
-            {
-                
-                modelBuilder.ApplyConfiguration(new GrupoConfiguration());
-                
-            }
         }
-    
+
+        public DbSet<Grupo> Grupos { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new GrupoConfiguration());
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Data source = 10.107.176.41,1434;
+                                    Database = BD043411; 
+                                    User ID = RA043411; 
+                                    Password = 043411;
+                                    TrustServerCertificate=true");
+        }
+    }
 }
+
+//201.62.57.93, 1434 

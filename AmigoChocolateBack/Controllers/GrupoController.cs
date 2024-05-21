@@ -52,7 +52,7 @@ namespace AmigoChocolateBack.Controllers
                 _context.Grupos.Add(grupo);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetGrupo", new { id = grupo.ID }, grupo);
+                return CreatedAtAction("GetGrupo", new { id = grupo.IDGrupo }, grupo);
             }
         }
     
