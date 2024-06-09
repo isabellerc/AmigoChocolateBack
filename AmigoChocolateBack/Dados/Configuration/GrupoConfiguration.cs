@@ -18,7 +18,7 @@ namespace AmigoChocolateBack.Dados.Configuration
                     .IsRequired()
                     .HasMaxLength(255);
 
-            builder.Property(g => g.Icone);
+            //builder.Property(g => g.Icone);
 
                 builder.Property(g => g.QuantidadeMaxima)
                     .IsRequired();
@@ -26,8 +26,8 @@ namespace AmigoChocolateBack.Dados.Configuration
                 builder.Property(g => g.ValorChocolate)
                     .HasColumnType("decimal(10, 2)");
 
-                builder.Property(g => g.DataRevelacao)
-                    .IsRequired();
+            builder.Property(g => g.DataRevelacao);
+                   // .IsRequired();
 
                 builder.Property(g => g.Descricao)
                     .HasColumnType("text");
