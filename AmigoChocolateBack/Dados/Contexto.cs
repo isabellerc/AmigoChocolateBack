@@ -59,7 +59,7 @@ namespace AmigoChocolateBack.Dados
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data source=201.62.57.93,1434;
+            optionsBuilder.UseSqlServer(@"Data source=10.107.176.41,1434;
                                           Database=BD043411; 
                                           User ID=RA043411; 
                                           Password=043411;

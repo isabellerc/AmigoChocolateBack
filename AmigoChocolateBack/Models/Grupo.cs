@@ -24,21 +24,26 @@ namespace AmigoChocolateBack.Models
         public string NomeGrupo { get; set; }
         public int QuantidadeMaxima { get; set; }
         public decimal ValorChocolate { get; set; }
-        public DateTime DataRevelacao { get; set; }
+        public DateTime DataRevelacao { get; set; }  // Use DateTime aqui
         public string Descricao { get; set; }
         public string? Icone { get; set; }
     }
 
+
+
     public class GrupoDto
     {
+        public int IDGrupo { get; set; }  // Adicionei IDGrupo, caso você precise
         public string NomeGrupo { get; set; }
         public int QuantidadeMaxima { get; set; }
         public decimal ValorChocolate { get; set; }
-        public DateTime DataRevelacao { get; set; }
+        public string DataRevelacao { get; set; } // Mantenha como string
         public string Descricao { get; set; }
-        //public IFormFile Icone { get; set; }
-        public string? Icone { get; set; }
+        public string Icone { get; set; }
     }
+
+
+
 
 
 

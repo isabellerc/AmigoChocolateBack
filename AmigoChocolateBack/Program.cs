@@ -76,7 +76,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AmigoChocolateBackContext>(options =>
-    options.UseSqlServer(@"Data Source=201.62.57.93,1434;
+    options.UseSqlServer(@"Data Source=10.107.176.41,1434;
                             User ID=RA043411;
                             Password=043411;
                             TrustServerCertificate=true",
