@@ -11,10 +11,9 @@ using System.Text.RegularExpressions;
 
 namespace AmigoChocolateBack.Controllers
 {
-   
-
-        [Route("api/[controller]")]
-        [ApiController]
+    [ApiController]
+    [Route("api/[controller]")]
+        
         public class GruposController : ControllerBase
         {
             private readonly AmigoChocolateBackContext _context;
@@ -24,80 +23,9 @@ namespace AmigoChocolateBack.Controllers
                 _context = context;
             }
 
-        // GET: api/Grupos
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Grupo>>> GetGrupos()
-        //{
-        //    return await _context.Grupos.ToListAsync();
-        //}
-
-        //    [HttpGet]
-        //    [Route("Get")]
-        //public async Task<ActionResult<IEnumerable<Grupo>>> GetGrupos()
-        //    {
-        //        try
-        //        {
-        //            var grupos = await _context.Grupos.ToListAsync();
-        //            return Ok(grupos);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            // Log detalhado da exceção
-        //            Console.WriteLine($"Erro ao buscar grupos: {ex.Message}\n{ex.StackTrace}");
-        //            return StatusCode(500, "Erro interno no servidor");
-        //        }
-        //    }
-
-        // GET: api/Grupos/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Grupo>> GetGrupo(int id)
-        //{
-        //    var grupo = await _context.Grupos.FindAsync(id);
-
-        //    if (grupo == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return grupo;
-        //}
-
-        //[HttpGet]
-        //[Route("BuscarGrupoPorID/{id}")]
-        //public async Task<IActionResult> ObterGrupoPorId(int id)
-        //{
-        //    Console.WriteLine("Chamado ObterGrupoPorId com ID: " + id);
-        //    try
-        //    {
-        //        var grupo = await _context.Grupos.FindAsync(id);
-        //        if (grupo == null)
-        //        {
-        //            return NotFound(); // Retorna 404 se o grupo não for encontrado
-        //        }
-
-        //        var grupoDto = new GrupoDto
-        //        {
-        //            IDGrupo = grupo.IDGrupo,
-        //            NomeGrupo = grupo.NomeGrupo,
-        //            QuantidadeMaxima = grupo.QuantidadeMaxima,
-        //            ValorChocolate = grupo.ValorChocolate,
-        //            DataRevelacao = grupo.DataRevelacao.ToString("yyyy-MM-ddTHH:mm:ss"),
-        //            Descricao = grupo.Descricao,
-        //            Icone = grupo.Icone
-        //        };
-
-        //        return Ok(grupoDto);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex);
-        //        return StatusCode(500, "Erro interno no servidor: " + ex.Message);
-        //    }
-        //}
-
         [HttpGet]
-        [Route("BuscarGrupoPorID/{id}")]
-        public async Task<IActionResult> ObterGrupoPorId(int id)
+        [Route("BuscarGrupoPorID")]
+        public async Task<IActionResult> BuscarGrupoPorId(int id)
         {
             try
             {
@@ -161,11 +89,6 @@ namespace AmigoChocolateBack.Controllers
         }
 
 
-
-
-
-
-
         [HttpPost]
             [Route("Post")]
         public async Task<IActionResult> CriarGrupo([FromForm] GrupoDto grupoDto)
@@ -206,51 +129,9 @@ namespace AmigoChocolateBack.Controllers
             _context.Grupos.Add(novoGrupo);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetGrupo), new { id = novoGrupo.IDGrupo }, novoGrupo);
+                return CreatedAtAction(nameof(ObterGrupos), new { id = novoGrupo.IDGrupo }, novoGrupo);
             }
-
-            // Método de exemplo para obter um grupo pelo ID
-            //[HttpGet("{id}")]
-            //public async Task<ActionResult<Grupo>> GetGrupo(int id)
-            //{
-            //    var grupo = await _context.Grupos.FindAsync(id);
-
-            //    if (grupo == null)
-            //    {
-            //        return NotFound();
-            //    }
-
-            //    return grupo;
-            //}
         }
-
-
-        // POST: api/Grupos
-        //[HttpPost]
-        //[Route("api/Grupos")]
-        ////public async Task<ActionResult<Grupo>> PostGrupo(Grupo grupo)
-        //public async Task<IActionResult> CriarGrupo([FromForm] GrupoDto grupoDto)
-        //{
-        //    try
-        //    {
-        //        _context.Grupos.Add(grupo);
-        //        await _context.SaveChangesAsync();
-        //        return CreatedAtAction("GetGrupo", new { id = grupo.IDGrupo }, grupo);
-        //    }
-        //    catch (DbUpdateException dbEx)
-        //    {
-        //        // Log detalhado da exceção específica do Entity Framework
-        //        Console.WriteLine($"Erro ao atualizar o banco de dados: {dbEx.Message}\n{dbEx.StackTrace}");
-        //        return StatusCode(500, "Erro ao atualizar o banco de dados");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log detalhado da exceção genérica
-        //        Console.WriteLine($"Erro ao criar grupo: {ex.Message}\n{ex.StackTrace}");
-        //        return StatusCode(500, "Erro ao criar grupo");
-        //    }
-        //}
-
-    //}
+    
 
 }
