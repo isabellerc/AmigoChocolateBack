@@ -13,15 +13,15 @@ namespace AmigoChocolateBack.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-        
-        public class GruposController : ControllerBase
-        {
-            private readonly AmigoChocolateBackContext _context;
 
-            public GruposController(AmigoChocolateBackContext context)
-            {
-                _context = context;
-            }
+    public class GruposController : ControllerBase
+    {
+        private readonly AmigoChocolateBackContext _context;
+
+        public GruposController(AmigoChocolateBackContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         [Route("BuscarGrupoPorID")]
@@ -90,15 +90,15 @@ namespace AmigoChocolateBack.Controllers
 
 
         [HttpPost]
-            [Route("Post")]
+        [Route("Post")]
         public async Task<IActionResult> CriarGrupo([FromForm] GrupoDto grupoDto)
+        {
+            if (!ModelState.IsValid)
             {
-                if (!ModelState.IsValid)
-                {
-                    Console.WriteLine("TESTE");
-                    return BadRequest(ModelState);
-                
-                }
+                Console.WriteLine("TESTE");
+                return BadRequest(ModelState);
+
+            }
 
             string formatoData = "yyyy-MM-ddTHH:mm:ss";
 
@@ -127,11 +127,11 @@ namespace AmigoChocolateBack.Controllers
             //}
 
             _context.Grupos.Add(novoGrupo);
-                await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(ObterGrupos), new { id = novoGrupo.IDGrupo }, novoGrupo);
-            }
+            return CreatedAtAction(nameof(ObterGrupos), new { id = novoGrupo.IDGrupo }, novoGrupo);
         }
-    
+    }
+
 
 }

@@ -22,6 +22,20 @@ namespace AmigoChocolateBack.Dados.Configuration
             builder.Property(p => p.SenhaParticipante)
                 .IsRequired()
                 .HasMaxLength(100);
+
+            //Configuração do relacionamento com Grupo
+            //builder.HasMany(p => p.Grupos)
+            //       .WithMany(g => g.Participantes)
+            //       .UsingEntity<Dictionary<string, object>>(
+            //           "ParticipanteGrupo",
+            //           j => j.HasOne<Grupo>().WithMany().HasForeignKey("IDGrupo"),
+            //           j => j.HasOne<Participante>().WithMany().HasForeignKey("IDParticipante"),
+            //           j =>
+            //           {
+            //               j.HasKey("IDParticipante", "IDGrupo");
+            //               j.ToTable("ParticipanteGrupo", "dbo");
+            //           });
+
         }
     }
 }
